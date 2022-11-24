@@ -4,9 +4,36 @@ import (
 	"reflect"
 	"testing"
 
+	"fmt"
 	"time"
 )
 
+///////////////////////////////////////////////////////////////////////
+//// Examples
+///////////////////////////////////////////////////////////////////////
+func Example() {
+	  sw := Start()
+	  time.Sleep(1 * time.Second)
+    lap1_time := sw.Elapsed()
+	  time.Sleep(1 * time.Second)
+    stop_time := sw.Stop()
+	  time.Sleep(1 * time.Second)
+    // Stopwatch no longer increments after Stop is called.
+    // So this call to Elapsed() returns the same thing Stop() did.
+    late_time := sw.Elapsed()
+
+    fmt.Println(int(lap1_time))
+    fmt.Println(int(stop_time))
+    fmt.Println(int(late_time))
+    // Output:
+    // 1
+    // 2
+    // 2
+}
+
+///////////////////////////////////////////////////////////////////////
+//// Unit Tests
+///////////////////////////////////////////////////////////////////////
 func TestStart(t *testing.T) {
 	s := Start()
 	if reflect.TypeOf(s).String() != "stopwatch.Stopwatch" {
@@ -44,7 +71,7 @@ func TestElapsed_Increases(t *testing.T) {
 	s.Stop()
 
 	if second_check <= first_check {
-		t.Fatal("Elapsed() is not incrementing in subsequent calls after start.")
+		t.Fatal("Elapsed() is not incrementing after Start().")
 	}
 }
 
@@ -60,5 +87,3 @@ func TestElapsed_AfterStop(t *testing.T) {
 		t.Fatal("Elapsed() is not returning same value as Stop().")
 	}
 }
-
-// Examples

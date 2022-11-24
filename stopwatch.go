@@ -21,6 +21,7 @@ func Start() (sw Stopwatch) {
 
 // Elapsed returns time.Now()-[start time] if stopwatch is still running.
 // Will return [stop time]-[start time] if stopwatch has been stopped.
+// Elapsed time is returned in seconds.
 func (s *Stopwatch) Elapsed() float64 {
 	if (s.stopped != time.Time{}) {
 		return s.stopped.Sub(s.started).Seconds()
@@ -29,6 +30,7 @@ func (s *Stopwatch) Elapsed() float64 {
 }
 
 // Stop will stop the stopwatch and return the total elapsed time.
+// Elapsed time is returned in seconds.
 func (s *Stopwatch) Stop() float64 {
 	s.stopped = time.Now()
 	return s.Elapsed()
