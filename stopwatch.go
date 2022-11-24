@@ -4,7 +4,7 @@ package stopwatch
 
 import "time"
 
-// Stopwatch is the core struct used. It should not be created directly,
+// Stopwatch is the core struct used. It should not be created directly
 // but instead through the use for the New() function.
 // No fields are exported, data is retrieved via method calls.
 type Stopwatch struct {
@@ -20,7 +20,7 @@ func Start() (sw Stopwatch) {
 }
 
 // Elapsed returns time.Now()-[start time] if stopwatch is still running.
-// Will return [stopped time] - [started time] if stopwatch has been stopped.
+// Will return [stop time]-[start time] if stopwatch has been stopped.
 func (s *Stopwatch) Elapsed() float64 {
 	if (s.stopped != time.Time{}) {
 		return s.stopped.Sub(s.started).Seconds()
