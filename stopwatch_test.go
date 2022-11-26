@@ -18,7 +18,7 @@ func Example() {
 	time.Sleep(1 * time.Second)
 	stop_time := sw.Stop()
 	time.Sleep(1 * time.Second)
-	// Stopwatch no longer increments after Stop is called.
+	// Stopwatch no longer increments after Stop() is called.
 	// So this call to Elapsed() returns the same thing Stop() did.
 	late_time := sw.Elapsed()
 
